@@ -6,7 +6,7 @@ class PostBase(BaseModel):
     title: str
     content: str
     sentiment: str
-    history_id: int
+    search_id: int
     
     class Config:
         orm_mode = True

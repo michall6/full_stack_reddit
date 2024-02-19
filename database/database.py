@@ -15,11 +15,16 @@ SQLALCHEMY_DB = os.environ['SQLALCHEMY_DB']
 
 SQLALCHEMY_DATABASE_URL = f"postgresql://{SQLALCHEMY_USER}:{SQLALCHEMY_PASSWORD}@{SQLALCHEMY_SERVER}:{SQLALCHEMY_PORT}/{SQLALCHEMY_DB}"
 
+
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
+
+
+# Initialize the database
+Base.metadata.create_all(bind=engine)
 
 def get_db():
     db = SessionLocal()

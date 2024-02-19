@@ -9,16 +9,16 @@ from database.database import get_db
 router = APIRouter()
 
 @router.get('/all', status_code=status.HTTP_200_OK)
-async def  get_all_searches(db: Session = Depends(get_db)):
+def  get_all_searches(db: Session = Depends(get_db)):
     try:
-       return await  db.query(history).all()
+       return   db.query(history).all()
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
     
 @router.get('/by-id/{id}', status_code=status.HTTP_200_OK)
 def get_search_by_id(id:int, db: Session = Depends(get_db)):
     try:
-        results=db.query(post).filter(post.history_id==id).all()
+        results=db.query(post).filter(post.search_id==id).all()
         return results
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
