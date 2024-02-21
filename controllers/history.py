@@ -1,11 +1,12 @@
 from sqlalchemy.orm import Session
-from database.models import history as models
+from database.models import history as history_model
 
 class HistoryCtrl:
     @staticmethod
-    def save_search(subreddit:str, category:str, db:Session):
+    def save_search_subreddit_category(subreddit:str, category:str, db:Session):
         try:
-            search_details = models.history(
+           
+            search_details = history_model.history(
                 subreddit=subreddit,
                 category=category
             )
@@ -13,9 +14,12 @@ class HistoryCtrl:
             db.commit()
             db.refresh(search_details)
             
-            search_id = db.query(models.history.id).order_by(models.history.id.desc()).first()[0]
+            search_id = db.query(history_model.history.id).order_by(history_model.history.id.desc()).first()[0]
 
             return search_id 
             
         except Exception as e:
-            print("/error in save_search", e)
+            print("/error in save_search_subreddit_category", e)
+
+
+ 

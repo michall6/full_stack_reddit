@@ -6,7 +6,7 @@ from controllers.post import RedditCtrl
 
 router = APIRouter()
 
-@router.get("/get-reddit-posts/{subreddit}/{category}")
+@router.get("/{subreddit}/{category}")
 async def get_posts(subreddit:str, category:str, db:Session = Depends(get_db)):  
     try:  
         return await RedditCtrl.search_posts(subreddit, category, db)

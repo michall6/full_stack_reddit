@@ -1,5 +1,5 @@
 from ..database import Base
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String,DateTime
 
 class history(Base):
     __tablename__ = 'history'
@@ -7,3 +7,7 @@ class history(Base):
     id = Column(Integer, primary_key=True)
     subreddit = Column(String)
     category = Column(String)
+
+
+
+      

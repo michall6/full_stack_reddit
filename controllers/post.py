@@ -13,6 +13,7 @@ class RedditCtrl:
                 post_to_save = post_models(**post)
                 db.add(post_to_save)
                 db.commit()
+            db.refresh()
         except Exception as e:
             print("error in save_posts", e)
 
@@ -24,22 +25,24 @@ class RedditCtrl:
                 
      except Exception as e:
       print("/error in get_posts", e)
+
  @staticmethod
  async def search_posts(subreddit:str, category:str, db:Session):
-        search_id =  HistoryCtrl.save_search(subreddit, category, db)
+        search_id =  HistoryCtrl.save_search_subreddit_category(subreddit, category, db)
         data = await RedditService.posts_from_reddit(subreddit, category)
         posts =  RedditCtrl.get_posts(data,search_id)
         RedditCtrl.save_posts(posts, db)
         return posts
+ 
  @staticmethod
- def get_post_details(post_data:dict,search_id):
+ def get_post_details(post_data:dict,search_id :UUID):
      try:
                 return {
-                    'id': post_data['data']['id'],
+                    
                     'title': post_data['data']['title'],
                     'selftext': post_data['data']['selftext'],
                     'sentiment': AnalyzingSentimentService.analyze_sentiment(str(post_data['data']['title'])),
-                    'search_id':  search_id
+                    'history_id':  search_id
                 }
                    
      except Exception as e:
