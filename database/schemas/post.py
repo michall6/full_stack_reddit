@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 
-
 class PostBase(BaseModel):
     id: int
     title: str

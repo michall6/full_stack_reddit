@@ -13,6 +13,7 @@ def  get_all_searches():
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
     
 @router.get('/by-id/{id}', status_code=status.HTTP_200_OK)
+
 def get_search_by_id(id:int):
     try:      
         results= HistoryDBCtrl.get_search_by_id(id)

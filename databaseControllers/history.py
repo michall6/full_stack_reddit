@@ -9,7 +9,7 @@ class HistoryDBCtrl:
         return db.query(history_model).all()
          
   @staticmethod
-  def get_search_by_id():
+  def get_search_by_id(id:int):
         return db.query(post_model).filter(post_model.history_id==id).all()
          
   @staticmethod
@@ -23,7 +23,7 @@ class HistoryDBCtrl:
             db.commit()
             db.refresh(search_details)
             
-            search_id = db.query(history_model.history.id).order_by(history_model.history.id.desc()).first()[0]
+            search_id = db.query(history_model.id).order_by(history_model.id.desc()).first()[0]
 
             return search_id 
             

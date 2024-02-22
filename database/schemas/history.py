@@ -1,7 +1,5 @@
 from pydantic import BaseModel
 
-
-
 class HistoryBase(BaseModel):
     id: int
     subreddit: str
@@ -10,7 +8,6 @@ class HistoryBase(BaseModel):
     
     class Config:
         orm_mode = True
-
 
 class CreateHistory(HistoryBase):
     class Config:

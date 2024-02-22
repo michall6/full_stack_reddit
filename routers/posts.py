@@ -5,6 +5,7 @@ from controllers.post import RedditCtrl
 router = APIRouter()
 
 @router.get("/{subreddit}/{category}")
+
 def get_posts(subreddit:str, category:str):  
     try:  
         return  RedditCtrl.search_posts(subreddit, category)
