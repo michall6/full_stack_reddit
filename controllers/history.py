@@ -7,7 +7,7 @@ class HistoryCtrl:
          HistoryDBCtrl.save_search_subreddit_category(subreddit,category)
             
         except Exception as e:
-            print("/error in save_search", e)
+            print("/error in controllers save_search", e)
 
 
  

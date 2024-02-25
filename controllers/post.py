@@ -12,7 +12,7 @@ class RedditCtrl:
          return get_post_details     
                 
      except Exception as e:
-      print("/error in get_posts", e)
+      print("/error in controllers get_posts", e)
 
  @staticmethod
  def search_posts(subreddit:str, category:str):
@@ -32,7 +32,7 @@ class RedditCtrl:
                 }
                    
      except Exception as e:
-      print("/error in post_details hhhhh", e)
+      print("/error in controllers post_details hhhhh", e)
 
 
 
